@@ -6,13 +6,13 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
 </head>
 <body>
-	<div>Press Any Key To Get Started......</div>
+	<div>Guess A Letter To Start The Game......</div>
 	<p id="wins">WINS: 0</p>
 	<p>CURRENT WORD</p>
 	<p id="currentWord"></p>
 	<br>
 	<p id="guesses">NUMBER OF GUESSES REMAINING: 10</p>
-	<p id="lettersGuessed">LETTERS ALREADY GUESSED: </p>
+	<p id="lettersGuessed">LAST LETTER GUESSED: </p>
 
 	<audio id="themeSong">
 		<source src="assets/theme.mp3">
@@ -50,42 +50,53 @@
 
 		guess = event.key;
 
-		lettersGuessed.push(guess);
+		document.getElementById("lettersGuessed").innerHTML = ('LETTERS ALREADY GUESSED: ' + guess);
+
+		//guess = lettersGuessed;
+
+		lettersGuessed.push();
 
 		for(var j = 0; j < word.length; j++) {
 
 			if (word[j] === guess) {
 			answerWord[j] = guess;
-			//remainingLetters--;
+			remainingLetters--;
 			console.log(answerWord);
 			document.getElementById("currentWord").innerHTML = (answerWord.join(""));
 			//guesses = 10;
 			//document.getElementById("guesses").innerHTML = ('NUMBER OF GUESSES REMAINING: ' + guesses);
-			
 
-		} else if(guess != word[j]) {
+		}
+
+		else if(word[j] != guess) {
+			//answerWord[j] = guess;
+			//remainingLetters--;
 			//guesses--;
-			document.getElementById("guesses").innerHTML = 'NUMBER OF GUESSES REMAINING: ' + (guesses - lettersGuessed.length);
-			document.getElementById("lettersGuessed").innerHTML = ('LETTERS ALREADY GUESSED: ' + guess);
+			//document.getElementById("guesses").innerHTML = 'NUMBER OF GUESSES REMAINING: ' + (guesses - lettersGuessed.length);
+			//document.getElementById("lettersGuessed").innerHTML = ('LETTERS ALREADY GUESSED: ' + guess);
 			//lettersGuessed.push(guess);
 			console.log(guess);
 			//word[j].innerHTML = guess;
 			//guess--;
+			//document.getElementById("guesses").innerHTML = 'NUMBER OF GUESSES REMAINING: ' + (guesses - lettersGuessed.length);
 
-			
+
 		}
 			if (remainingLetters == 0) {
 
 				wins++;
 				document.getElementById("wins").innerHTML = ('WINS: ' + wins);
-				words[Math.floor(Math.random() * words.length)];  
-				guesses = 10;
+				//words[Math.floor(Math.random() * words.length)];  
+				//guesses = 10;
 				//alert("The Force is Strong With You!");
-
 		}
 
-			
+		else {
+			//guesses--;
+			//document.getElementById("guesses").innerHTML = ('NUMBER OF GUESSES REMAINING:  ' + guesses);
+			document.getElementById("guesses").innerHTML = 'NUMBER OF GUESSES REMAINING: ' + (guesses - lettersGuessed.length);
 
+		}
 
 
 			//if (guesses == 0) {
